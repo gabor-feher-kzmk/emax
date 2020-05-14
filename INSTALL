@@ -1,0 +1,52 @@
+The Emax Installation Guide
+-----------------------------
+    
+    [1] System requirements
+    [2] Installation under DOS/Win/NT
+    [3] Installation under Linux
+    
+-------------------------------------    
+[1] System requirements
+-------------------------------------    
+The Emax version 0.01 doesn't support lots of kind of hardware. 
+So you need :
+  - i386 comatible machine (386,486,Pentium I/II/Celeron/III/4 ,K5,K6,K7/Duron)
+  - 2 MB RAM (or higher, but only 64 MB is used)
+  - 1.44 Floppy drive
+  - Color Video Card
+  - AT/PS/2 Keyboard
+-------------------------------------    
+[2] Installation under DOS/Win/NT
+-------------------------------------
+ Under DOS/Win/NT you can't recompile the kernel. You can use a
+ pre-compiled kernel (k32.img) to run the system. You can also
+ use the root floppy image (emaxfs.img).
+    The easyest way to install this is running inst-dos.bat under
+ one of these platforms. This script will ask you for two floppies
+ One labeled boot and a nother labeled root.
+    After you run the script put the boot floppy in drive and restart
+ your machine. If the loader loaded the system, it'll ask for the root
+ floppy. Yust put it in. After you pressed enter a message :
+ "Press ENTER to activete console" will apear. Press Enter again, 
+ and the the system is now running.
+
+-------------------------------------    
+    [3] Installation under Linux
+-------------------------------------    
+ Under Linux or any kind of unix compatible system /FreeBSD,QNX,MINIX/
+ you can compile the system if you have gcc 2.7.x (gcc 2.95.x is not 
+ supported yet). You can modify some features of the system, in 
+ ./emax/CONFIG/config.h . To compile the kernel, just run Make.sh in
+ the emax directory. And now just run the inst-linux.sh script to do
+ the rest.
+    If you don't have gcc 2.7.x, just run the inst-linux.sh script and
+ it will install a precompiled kernel on the floppies.
+    After you run the script put the boot floppy in drive and restart
+ your machine. If the loader loaded the system, it'll ask for the root
+ floppy. Yust put it in. After you pressed enter a message :
+ "Press ENTER to activete console" will apear. Press Enter again, 
+ and the the system is now running.
+
+
+
+ 

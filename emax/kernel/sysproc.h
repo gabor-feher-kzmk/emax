@@ -1,0 +1,153 @@
+/* *   		sysproc.h includes the header for the system task	  *
+   *   -- By Kozmik (C) --                                     _____      *
+   *      -------------  __  __           ______       _____  /    /  (C) *
+   *     /____________/ /  \/  \         /      \      \    \/    /       *
+   *    -------------  /        \       /   /\   \      \        /        *
+   *   /____________/ /   /\/\   \     /   /  \   \     /       /         *
+   *  -------------  /   /    \   \   /   /____\   \   /        \         *
+   * /____________/ /___/      \___\ /___//_________\ /    /\____\        *
+   *                                                 /____/               *
+   ************************************************************************/
+ENTRY(sysproc_head);
+LONG(0x00000000);//the number of the proc's selector in GDT	
+LONG(0x00000000);//LDT selector in GDT 
+LONG(0x00000000);//the offset of the LDT
+LONG(0x00000000);//the offset of the TSS
+LONG(0x00000000);//the start and the 			INFO
+LONG(0xFFFFFFFF);//end of the proc's segments
+LONG(0x00000000);//the type of the header (proc oder thread)
+LONG(0x00000000);//the the next thread to schedule (if there aren't threads the procs PID)
+/* misc info */
+LONG(0x00000001);//the number of the vt witch is connected to the proc
+LONG(0x00000000);//free for future usage
+LONG(0x00000000);//free for future usage
+LONG(0x00000000);//free for future usage
+/* seched data */
+LONG(0x00000003);//priority of proc
+LONG(0x00000001);//data for priority count		SCHED
+LONG(0x00000000);//the status of the proc
+/* message data */
+LONG(0x00000000);//send stack 
+LONG(0xFFFFFFFF);//send dest proc			
+LONG(0x00000000);//size of send message			MESSAGE
+LONG(0x00000000);//recieve stack 
+LONG(0xFFFFFFFF);//recieve dest proc			
+LONG(0x00000000);//size of recieve message
+/* dma data */
+LONG(0x00000000);//dma offset 
+LONG(0x00000000);//dma size				DMA
+LONG(0x00000000);//dma dest proc
+LONG(0x00000000);//dma mode (rw)
+	/*dma 2*/
+LONG(0x00000000);//dma 2 offset 
+LONG(0x00000000);//dma 2 size				DMA
+LONG(0x00000000);//dma 2 dest proc
+LONG(0x00000000);//dma 2 mode (rw)
+/* status */
+LONG(0x00000000);/*the kill status of process (0=never kill it) the more the
+proc will run if (dangerous slownes)*/
+/*This will be the space where the CPU's registers are pushed*/
+LONG(0x00000000); //	_Back Link	0
+LONG(0x00000000); //	_ESP0		4
+LONG(0x00000000); //	_SS0		8
+LONG(0x00000000); //	_ESP1		12
+LONG(0x00000000); //	_SS1		16
+LONG(0x00000000); //	_ESP2		20
+LONG(0x00000000); //	_SS2		24
+LONG(0x00000000); //	_CR3		28
+LONG(0x00000000); //	_EIP		32
+LONG(0x00000000); //	_EFLAGS		36
+LONG(0x00000000); //	_EAX		40
+LONG(0x00000000); //	_ECX		44
+LONG(0x00000000); //	_EDX		48
+LONG(0x00000000); //	_EBX		52
+LONG(0x00000000); //	_ESP		56
+LONG(0x00000000); //	_EBP		60
+LONG(0x00000000); //	_ESI		64
+LONG(0x00000000); //	_EDI		68
+LONG(0x00000000); //	_ES		72
+LONG(0x00000000); //	_CS		76
+LONG(0x00000000); //	_SS		80
+LONG(0x00000000); //	_DS		84
+LONG(0x00000000); //	_FS		88
+LONG(0x00000000); //	_GS		92
+LONG(0x00000000); //	_LDT_select	96
+LONG(0x00000000); //	_IO_map		100
+/*The information of the threads */
+LONG(0x00000000);// the number of the last thread in the process
+LONG(0x00000000);// the mother process which the thread is in
+LONG(0x00000000);// the number of the thread
+/* this is the space where the processes LDT is saved (only in thread [0])*/
+LONG(0x00000000);//|
+LONG(0x00000000);//|> LDT0
+LONG(0x00000000);//|
+LONG(0x00000000);//|> LDT1
+LONG(0x00000000);//|
+LONG(0x00000000);//|> LDT2
+LONG(0x00000000);//|
+LONG(0x00000000);//|> LDT3
+LONG(0x00000000);//|
+LONG(0x00000000);//|> LDT4
+LONG(0x00000000);//|
+LONG(0x00000000);//|> LDT5
+LONG(0x00000000);//|
+LONG(0x00000000);//|> LDT6
+LONG(0x00000000);//|
+LONG(0x00000000);//|> LDT7
+LONG(0x00000000);//|
+LONG(0x00000000);//|> LDT8
+LONG(0x00000000);//|
+LONG(0x00000000);//|> LDT9
+/*This is the space where the processes signals are defined */
+LONG(0xFFFFFFFF);
+/*
+static inline int strncmp(const char * cs,const char * ct,unsigned int count);
+static inline char * strrchr(const char * s, int c);
+static inline char * strcpy(char * dest,const char *src);
+static inline int strcmp(const char * cs,const char * ct);
+static inline char * strchr(const char * s, int c);
+static unsigned long strlen(const char * s);
+*/
+char * strchr(const char * s, int c);
+char * strrchr(const char * s, int c);
+int strncmp(const char * cs,const char * ct,unsigned long count);
+static unsigned long strlen(const char * s);
+
+static unsigned long mem_load(unsigned long offset);
+static void mem_str(unsigned long offset,unsigned long data);
+static unsigned char m_al(unsigned long eax);
+static unsigned long msel_off(unsigned long ss,unsigned long proc);
+static unsigned char m_ah(unsigned long eax);
+static unsigned long get_mreg(unsigned long pn,unsigned long reg);
+static void load_mreg(unsigned long pn,unsigned long reg,unsigned long data);
+static unsigned int mem_wload(unsigned long offset);
+static unsigned long msel_hat(unsigned long ss,unsigned long proc);
+static unsigned char mem_bload(unsigned long offset);
+static void mem_bstr(unsigned long offset,unsigned long data);
+
+static void writeln(char * ch);
+static void readln(char * ch);
+
+static int mk_dir(unsigned char * ch);
+static int find_next(unsigned char * ch,unsigned char * nm,unsigned long num);
+static unsigned long fopen(unsigned char * ch,unsigned long mode);
+static int fclose(unsigned long fp);
+static unsigned char fread(unsigned long fp,unsigned long pos);
+static unsigned long fsize(unsigned long fp);
+static unsigned long frlong(unsigned long fp,unsigned long byte);
+
+static int do_exec(unsigned long proc);
+static int kill_proc(unsigned long pid);
+static void ltoa(char *str,unsigned long lnum);
+static void ltoh(char *str,unsigned char b);
+static void write_row(unsigned long mem);
+static unsigned long get_mem(unsigned long size);
+static int free_region(unsigned long from,unsigned long to);
+static void init_sysproc();
+
+static void pmk_ldt32(unsigned int pn,unsigned int num,unsigned long offset,
+unsigned long hat,unsigned int type);
+static void pmk_gdt32(unsigned int num,unsigned long offset,unsigned long hat,
+ unsigned int type);
+static unsigned int m_axh(unsigned long eax);
+static unsigned int m_axl(unsigned long eax);

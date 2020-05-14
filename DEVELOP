@@ -1,0 +1,31 @@
+Emax Developers Information
+----------------------------
+
+	Welcome to the Emax Developers Group !
+
+I'm glad to see you in this little group. Now your first task will be
+to try out the system and look at it's source. 
+    You probably have some ideas now, so e-mail me to kozmik@kgb.hu
+Write your idea and your e-mail address to me and the project will begin.
+Some of the project in the future :
+	- new scheduler algorythm
+	- extended support for threads    
+	- hdd support
+	- vga support
+	- net
+	- ...
+	
+	
+	The Emax's philosophy
+----------------------------------------
+Emax is not a fast OS. It is created to handle many processes at one time.
+It's the futures technology, because the multi processor machines are the 
+futures computers. These are more powerfull than a xGHz CPU, if they have
+the right OS running on them. Emax also wants to make high preformance
+machine from PC-s connected with fast Ethernet. (Some kind of thin like Amoeba)
+    
+		Yust write your ideas to < kozmik@kgb.hu > 
+				    
+				    Thank's for all: Kozmik
+				    
+/ Oh, and sorry for the mistakes, my grammar isn't perfect /		
